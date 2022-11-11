@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: machine-learning
+  labels:
+    app: machine-learning
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: machine-learning
+  template:
+    metadata:
+      labels:
+        app: machine-learning
+    spec:
+      containers:
+      - name: machine-learning
+        image: docker.io/library/machine-learning:latest
+        imagePullPolicy: Never

@@ -1,0 +1,7 @@
+opencv-python
+numpy
+matplotlib
+torchvision
+azure-storage-blob==12.14.1
+azure-identity
+pytz
