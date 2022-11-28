@@ -1,0 +1,8 @@
+FROM --platform=linux/amd64 ubuntu:latest
+
+RUN apt update -y && apt install python3 pip -y
+
+
+RUN pip3 install tensorflow azure-storage-blob
+
+RUN apt install ffmpeg libsm6 libxext6  -y

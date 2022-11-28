@@ -66,11 +66,8 @@ with detection_graph.as_default():
         tf.compat.v1.import_graph_def(od_graph_def, name='')
 
     sess = tf.compat.v1.Session(graph=detection_graph)
-# Input tensor is the image
 image_tensor = detection_graph.get_tensor_by_name('image_tensor:0')
 
-# Output tensors are the detection boxes, scores, and classes
-# Each box represents a part of the image where a particular object was detected
 detection_boxes = detection_graph.get_tensor_by_name('detection_boxes:0')
 
 # Each score represents level of confidence for each of the objects.
