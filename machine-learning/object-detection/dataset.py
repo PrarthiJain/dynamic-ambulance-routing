@@ -5,14 +5,15 @@ from azure.storage.blob import ContainerClient
 from azure.identity import DefaultAzureCredential
 from itertools import cycle
 from azure.storage.blob import BlobServiceClient
+import sys
 
 account_name = 'cs5412storage'
 account_url = "https://cs5412storage.blob.core.windows.net"
 account_key = 'aHag2cwNa6fY3EEy2V9z6LvI8/vmAWK8l7M2cHFbPMf/PdptJ6zXjeEBdxdvZ0jKqiliU8Y4fN77+AStoacOvA=='
 connection_string = 'DefaultEndpointsProtocol=https;AccountName=cs5412storage;AccountKey=aHag2cwNa6fY3EEy2V9z6LvI8/vmAWK8l7M2cHFbPMf/PdptJ6zXjeEBdxdvZ0jKqiliU8Y4fN77+AStoacOvA==;EndpointSuffix=core.windows.net'
 default_credential = DefaultAzureCredential()
-copy_from_container = 'source-container'
-copy_to_container = 'newcontainer'
+copy_from_container = sys.argv[1]
+copy_to_container = sys.argv[2]
 
 
 def copy_azure_files(blob_name):

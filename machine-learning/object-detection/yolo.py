@@ -9,6 +9,7 @@ from azure.identity import DefaultAzureCredential
 from io import BytesIO, TextIOWrapper
 import pytz
 import sys
+import time
 
 account_name = 'cs5412storage'
 account_url = ""
@@ -21,6 +22,7 @@ container_name = sys.argv[1]
 stream = BytesIO()
 utc = pytz.UTC
 
+start_time = time.time()
 container = ContainerClient.from_connection_string(conn_str=connection_string, container_name=container_name)
 last = datetime.datetime(2021, 6, 13, 17, 57, 41, 613329, tzinfo=utc)
 
@@ -79,7 +81,7 @@ detection_classes = detection_graph.get_tensor_by_name('detection_classes:0')
 num_detections = detection_graph.get_tensor_by_name('num_detections:0')
 
 image_expanded = np.expand_dims(image, axis=0)
-
+start_time = time.time()
 # Perform the actual detection by running the model with the image as input
 (boxes, scores, classes, num) = sess.run([detection_boxes, detection_scores, detection_classes, num_detections],
                                          feed_dict={image_tensor: image_expanded})

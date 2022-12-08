@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ambulance-routing-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ambulance-routing-server
+  template:
+    metadata:
+      labels:
+        app: ambulance-routing-server
+    spec:
+      nodeSelector:
+        "kubernetes.io/os": linux
+      containers:
+        - name: server
+          image: praru15/server:b-8
+          resources:
+            requests:
+              cpu: 500m
+              memory: 1Gi
+            limits:
+              cpu: 1000m
+              memory: 2Gi
+          ports:
+            - containerPort: 8080
+              name: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ambulance-routing-server
+spec:
+  ports:
+    - port: 8080
+  selector:
+    app: ambulance-routing-server
